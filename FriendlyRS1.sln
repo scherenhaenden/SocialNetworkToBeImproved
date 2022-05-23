@@ -16,6 +16,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FriendlyRS1.Repository", "F
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{1A398014-F104-485A-8F21-4AA1B12BF3CB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess.DataBase", "DataAccess.DataBase\DataAccess.DataBase.csproj", "{CD788B67-69A5-4EAA-9E32-FB96BFF82831}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess.DataBase.Test", "DataAccess.DataBase.Test\DataAccess.DataBase.Test.csproj", "{FC409303-C78B-41B4-8F78-EF386CEF12C8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,6 +46,14 @@ Global
 		{1A398014-F104-485A-8F21-4AA1B12BF3CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1A398014-F104-485A-8F21-4AA1B12BF3CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1A398014-F104-485A-8F21-4AA1B12BF3CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD788B67-69A5-4EAA-9E32-FB96BFF82831}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD788B67-69A5-4EAA-9E32-FB96BFF82831}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD788B67-69A5-4EAA-9E32-FB96BFF82831}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD788B67-69A5-4EAA-9E32-FB96BFF82831}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC409303-C78B-41B4-8F78-EF386CEF12C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC409303-C78B-41B4-8F78-EF386CEF12C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC409303-C78B-41B4-8F78-EF386CEF12C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC409303-C78B-41B4-8F78-EF386CEF12C8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
