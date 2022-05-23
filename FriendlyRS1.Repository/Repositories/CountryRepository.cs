@@ -3,6 +3,7 @@ using DataLayer.EntityModels;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using FriendlyRS1.Repository.RepositorySetup;
 using FriendlyRS1.Repository.RepostorySetup;
 
 namespace FriendlyRS1.Repository.Repositories

@@ -61,7 +61,7 @@
                             <option>Select hobby</option>
                         </select>
                     </div>
-                    <input type="button" onclick="AddHobbyToUser();" class="btn btn-success ml-1" value="Add" />
+                    <input type="button" onclick="AddHobbyToAspNetUser();" class="btn btn-success ml-1" value="Add" />
                 </div>
                 <div class="container-hobby-tags clearfix">
                     @if(ErrorMsg != null)
@@ -77,7 +77,7 @@
                                         <span>@hobby.Hobby.Title</span>
                                     </div>
                                     <div>
-                                        <a class="fas fa-times text-light" onclick="DeleteHobbyFromUser(@hobby.Hobby.Id)" style="cursor:pointer"></a>
+                                        <a class="fas fa-times text-light" onclick="DeleteHobbyFromAspNetUser(@hobby.Hobby.Id)" style="cursor:pointer"></a>
                                     </div>
                                 </div>
                             </div>
@@ -90,9 +90,9 @@
 </div>
 
 <script>
-    function AddHobbyToUser() {
+    function AddHobbyToAspNetUser() {
         var form = $("#userHobbyForm");
-        var url = "/UserProfile/AddHobbyToUser";
+        var url = "/AspNetUserProfile/AddHobbyToAspNetUser";
 
         $.ajax({
             type: 'POST',
@@ -104,8 +104,8 @@
         })
     }
 
-    function DeleteHobbyFromUser(id) {
-        var url = "/UserProfile/DeleteHobbyFromUser/" + id;
+    function DeleteHobbyFromAspNetUser(id) {
+        var url = "/AspNetUserProfile/DeleteHobbyFromAspNetUser/" + id;
         $.ajax({
             url: url,
             type: "GET",

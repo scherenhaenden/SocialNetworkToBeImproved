@@ -1,4 +1,4 @@
-﻿@*@inject SignInManager<ApplicationUser> signInManager;*@
+﻿@*@inject SignInManager<ApplicationAspNetUser> signInManager;*@
 
 @using System.Security.Claims;
 
@@ -215,7 +215,7 @@
                     <li data-toggle="tooltip" title="My Profile" class="px-lg-3 px-1">
                         <a class="far fa-user fa-2x text-info bar-icon" asp-controller="UserProfile" asp-action="Index" asp-route-id="@null" style="text-decoration:none"></a>
                     </li>
-                    <li class="text-primary font-weight-bold px-lg-3 px-1"> @(((ClaimsIdentity)User.Identity).FindFirst("FirstName").Value)</li>
+                    <li class="text-primary font-weight-bold px-lg-3 px-1"> @(((ClaimsIdentity)User?.Identity)?.FindFirst("FirstName")?.Value)</li>
                     <li data-toggle="tooltip" title="Messages" class="px-lg-3 px-1">
                         <i class="far fa-comment fa-2x text-info bar-icon"></i>
                     </li>

@@ -58,7 +58,7 @@ namespace FriendlyRS1.Controllers
         public async Task<IActionResult> FriendSuggestion()
         {
             ApplicationUser applicationUser = await _userManager.GetUserAsync(User);
-            var a = unitOfWork.User.GetAll();
+            var a = unitOfWork.AspNetUser.GetAll();
 
             var users = _userManager.Users.Where(u => u.Id != applicationUser.Id).Select(x => new ApplicationUser
             {
@@ -251,7 +251,7 @@ namespace FriendlyRS1.Controllers
                 List<ShowPostVM> p = new List<ShowPostVM>();
                 foreach (Post post in posts)
                 {
-                    ApplicationUser u = unitOfWork.User.Get(x => x.Id == post.AuthorId);
+                    ApplicationUser u = unitOfWork.AspNetUser.Get(x => x.Id == post.AuthorId);
                     Hobby h = unitOfWork.hobby.Get(x => x.Id == post.HobbyId);
                     p.Add(new ShowPostVM
                     {
@@ -298,7 +298,7 @@ namespace FriendlyRS1.Controllers
             if (string.IsNullOrEmpty(search))
                 return new EmptyResult();
 
-            List<ApplicationUser> users = unitOfWork.User.GetUsersByName(search, skip, take);
+            List<ApplicationUser> users = unitOfWork.AspNetUser.GetUsersByName(search, skip, take);
 
             UserVM model = new UserVM
             {

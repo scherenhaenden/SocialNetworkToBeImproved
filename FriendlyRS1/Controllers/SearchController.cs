@@ -41,7 +41,7 @@ namespace FriendlyRS1.Controllers
             UserVM model = new UserVM();
             if (!string.IsNullOrEmpty(q))
             {
-                List<ApplicationUser> users = _unitOfWork.User.GetUsersByName(q, firstItem, take);
+                List<ApplicationUser> users = _unitOfWork.AspNetUser.GetUsersByName(q, firstItem, take);
 
                 model = new UserVM
                 {

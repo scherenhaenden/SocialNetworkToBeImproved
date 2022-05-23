@@ -24,7 +24,7 @@ namespace FriendlyRS1.Helpers
 
             //public async Task InvokeAsync(HttpContext httpContext)
             //{
-            //    if (httpContext.User != null && httpContext.User.Identity.IsAuthenticated)
+            //    if (httpContext.AspNetUser != null && httpContext.AspNetUser.Identity.IsAuthenticated)
             //    {
             //        var claims = new List<Claim>
             //    {
@@ -32,7 +32,7 @@ namespace FriendlyRS1.Helpers
             //    };
 
             //        var appIdentity = new ClaimsIdentity(claims);
-            //        httpContext.User.AddIdentity(appIdentity);
+            //        httpContext.AspNetUser.AddIdentity(appIdentity);
             //    }
 
             //    await _next(httpContext);

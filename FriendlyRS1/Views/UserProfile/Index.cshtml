@@ -602,7 +602,7 @@
     <script>
             window.addEventListener('load', () => {
 
-            var url = "/UserProfile/FriendConnect/" + @Model.UserId;
+            var url = "/AspNetUserProfile/FriendConnect/" + @Model.UserId;
 
            document.getElementById(@Model.UserId).innerHTML = loaderSmall;
             $.ajax({
@@ -639,8 +639,8 @@
 
 
     function LoadConnections() {
-        let url = '/UserProfile/GetConnections/' + @Model.UserId;
-        let url2 = '/UserProfile/SearchConnections/';
+        let url = '/AspNetUserProfile/GetConnections/' + @Model.UserId;
+        let url2 = '/AspNetUserProfile/SearchConnections/';
         let search = $(".searchConnections");
         search.show();
         partial.style.display = "none";
@@ -681,7 +681,7 @@
     }
 
     function  GetMenu() {
-        let url = '/UserProfile/GetUser/' + @Model.UserId + '?id2=' + @Model.LoggedUserId;
+        let url = '/AspNetUserProfile/GetAspNetUser/' + @Model.UserId + '?id2=' + @Model.LoggedUserId;
         // add loader to the screen
         $(".profile-content").html(loader);
 
@@ -691,7 +691,7 @@
     }
 
     function SearchConnections(search) {
-        let url = '/UserProfile/GetConnections/' + @Model.UserId + '?&searchString=' + search;
+        let url = '/AspNetUserProfile/GetConnections/' + @Model.UserId + '?&searchString=' + search;
         //$(".profile-content").append("Searching.." + loader);
         $('.profile-content .con').remove();
 
@@ -724,14 +724,14 @@
     }
 
     function EditProfileData(id) {
-        var url = "/UserProfile/EditCity?id=" + id;
+        var url = "/AspNetUserProfile/EditCity?id=" + id;
         $.get(url, function (d) {
             $(".profile-content").html(d);
         });
     }
 
     function ContactInfo() {
-        var url = '/UserProfile/ContactInfo/' + @Model.UserId;
+        var url = '/AspNetUserProfile/ContactInfo/' + @Model.UserId;
 
         $.get(url, function (d) {
             $("#information").html(d);
@@ -740,7 +740,7 @@
     }
 
     function LivingPlaces() {
-        var url = '/UserProfile/LivingPlaces/ '+ @Model.UserId;
+        var url = '/AspNetUserProfile/LivingPlaces/ '+ @Model.UserId;
         $.get(url, function (d) {
             $("#information").html(d);
         });
@@ -752,7 +752,7 @@
     }
 
     function PersonalInfo() {
-        var url = '/UserProfile/PersonalInfo/' + @Model.UserId;
+        var url = '/AspNetUserProfile/PersonalInfo/' + @Model.UserId;
 
         $.get(url, function (d) {
             $("#information").html(d);
@@ -764,7 +764,7 @@
 
         var form = $("#CityForm");
 
-        var url = "/UserProfile/EditCity";
+        var url = "/AspNetUserProfile/EditCity";
         $.ajax({
             type: 'POST',
             url: url,
@@ -786,7 +786,7 @@
         infinityScroll.Update(null, null);
         const Http = new XMLHttpRequest();
 
-        const url = '/UserProfile/DisplayHobbies';
+        const url = '/AspNetUserProfile/DisplayHobbies';
         Http.open("GET", url);
         Http.send();
 

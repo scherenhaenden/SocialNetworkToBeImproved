@@ -1,9 +1,6 @@
 ﻿using DataLayer.EntityModels;
 using FriendlyRS1.Repository;
-using FriendlyRS1.Repository.RepostorySetup;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using FriendlyRS1.Repository.RepositorySetup;
 
 namespace DataLayer.Repositories
 {

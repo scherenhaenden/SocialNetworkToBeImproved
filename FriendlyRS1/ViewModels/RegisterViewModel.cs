@@ -51,9 +51,13 @@ namespace FriendlyRS1.ViewModels
         }
 
         [Required(ErrorMessage = Constants.Messages.Required)]
-        public int? GenderId { get; set; }
+        public int? GenderId { get; set; } = 1;
+
+        private Row _gender;
         public List<Row> Gender { get; set; }
         public string[] Genders { get; set; } = new[] { "Male", "Female", "Other" };
+        
+        
 
     }
 }

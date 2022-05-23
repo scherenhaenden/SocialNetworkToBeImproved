@@ -4,10 +4,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using FriendlyRS1.Repository.RepositorySetup;
 
 namespace FriendlyRS1.Repository.Repositories
 {
-    public class UserRepository : Repository<ApplicationUser>
+    public class UserRepository : Repository<ApplicationUser> 
     {
         private readonly ApplicationDbContext _db;
         public UserRepository(ApplicationDbContext db) : base(db)

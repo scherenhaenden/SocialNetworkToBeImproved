@@ -1,23 +1,22 @@
-﻿using DataLayer.EntityModels;
-using FriendlyRS1.Repository.RepositorySetup;
-using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
+using DataLayer.EntityModels;
+using FriendlyRS1.Service;
+using Microsoft.EntityFrameworkCore;
 
-namespace FriendlyRS1.Repository.RepostorySetup
+namespace FriendlyRS1.Repository.RepositorySetup
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {
         private readonly ApplicationDbContext _db;
-        internal DbSet<TEntity> dbSet;
+        internal DbSet<TEntity> _dbSet;
 
         public Repository(ApplicationDbContext db)
         {
             _db = db;
-            dbSet = _db.Set<TEntity>();
+            _dbSet = _db.Set<TEntity>();
         }
         public TEntity Get(Expression<Func<TEntity, bool>> predicate, string[] entities = null)
         {
@@ -32,6 +31,11 @@ namespace FriendlyRS1.Repository.RepostorySetup
             return query.Where(predicate).FirstOrDefault();
         }
 
+        public IEnumerable<TEntity> GetAll()
+        {
+            return _dbSet.ToList();
+        }
+
         public TType GetSingle<TType>(Expression<Func<TEntity, bool>> where, Expression<Func<TEntity, TType>> select) where TType : class
         {
             return _db.Set<TEntity>().Where(where).Select(select).SingleOrDefault();
@@ -40,13 +44,17 @@ namespace FriendlyRS1.Repository.RepostorySetup
         public List<TType> GetList<TType>(Expression<Func<TEntity, TType>> select, Expression<Func<TEntity, bool>> where = null) where TType : class
         {
             if (where == null)
-                return _db.Set<TEntity>().Select(select).ToList();
+            {
+                return _dbSet.Select(select).ToList();
+            }
+
+            
             return _db.Set<TEntity>().Where(where).Select(select).ToList();
         }
 
         public TEntity Find(int id)
         {
-            return dbSet.Find(id);
+            return _dbSet.Find(id);
         }
         public IQueryable<TEntity> GetSelect(Expression<Func<TEntity, bool>> predicate, string[] entities)
         {
@@ -63,15 +71,15 @@ namespace FriendlyRS1.Repository.RepostorySetup
 
         public IEnumerable<TEntity> GetAll(string[] entities = null)
         {
-            IQueryable<TEntity> query = _db.Set<TEntity>();
+            /*IQueryable<TEntity> query = _db.Set<TEntity>();
             if (entities != null)
             {
                 foreach (string entity in entities)
                 {
                     query = query.Include(entity);
                 }
-            }
-            return query.ToList();
+            }*/
+            return _dbSet.ToList();
         }
 
         public IEnumerable<TEntity> EagerLoading(string[] entities, Expression<Func<TEntity, bool>> predicate = null)
@@ -101,7 +109,7 @@ namespace FriendlyRS1.Repository.RepostorySetup
 
         public virtual void Update(TEntity entityToUpdate)
         {
-            dbSet.Attach(entityToUpdate);
+            _dbSet.Attach(entityToUpdate);
             _db.Entry(entityToUpdate).State = EntityState.Modified;
         }
 

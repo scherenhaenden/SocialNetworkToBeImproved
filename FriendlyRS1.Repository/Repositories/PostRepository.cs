@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using FriendlyRS1.Repository.RepositorySetup;
 using Microsoft.EntityFrameworkCore;
 
 namespace FriendlyRS1.Repository.Repositories

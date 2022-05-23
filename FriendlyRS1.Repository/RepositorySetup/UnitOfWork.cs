@@ -5,6 +5,8 @@ using FriendlyRS1.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using FriendlyRS1.Repository.RepositorySetup;
+using FriendlyRS1.Service;
 
 namespace FriendlyRS1.Repository.RepostorySetup
 {
@@ -15,9 +17,9 @@ namespace FriendlyRS1.Repository.RepostorySetup
         public HobbyCategoryRepository hobbyCategory { get; set; }
         public ApplicationUserHobbyRepository UserHobby { get; set; }
 
-        public UserRepository User { get; set; }
+        public UserRepository AspNetUser { get; set; }
         private GenderRepository GenderRepository;
-        public GenderRepository Gender
+        public IRepository<Gender> Gender
         {
             get
             {
@@ -124,7 +126,7 @@ namespace FriendlyRS1.Repository.RepostorySetup
             this.context = context;
             hobby = new HobbyRepository(context);
             hobbyCategory = new HobbyCategoryRepository(context);
-            User = new UserRepository(context);
+            AspNetUser = new UserRepository(context);
             UserHobby = new ApplicationUserHobbyRepository(context);
         }
 

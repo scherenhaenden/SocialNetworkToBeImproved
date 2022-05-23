@@ -55,7 +55,7 @@ namespace FriendlyRS1.Controllers
                 me = true;
             }
 
-            UserDetailsVM userDetails = unitOfWork.User.GetSingle(x => x.Id == id, x => new UserDetailsVM
+            UserDetailsVM userDetails = unitOfWork.AspNetUser.GetSingle(x => x.Id == id, x => new UserDetailsVM
             {
                 UserId = x.Id,
                 FirstName = x.FirstName,
@@ -92,7 +92,7 @@ namespace FriendlyRS1.Controllers
                 return NotFound();
             }
 
-            UserDetailsVM userVM = unitOfWork.User.GetSingle<UserDetailsVM>(x => x.Id == id,
+            UserDetailsVM userVM = unitOfWork.AspNetUser.GetSingle<UserDetailsVM>(x => x.Id == id,
                 x => new UserDetailsVM
                 {
                     FirstName = x.FirstName,
@@ -115,7 +115,7 @@ namespace FriendlyRS1.Controllers
         {
             if (ModelState.IsValid)
             {
-                ApplicationUser user = unitOfWork.User.Find(model.UserId);
+                ApplicationUser user = unitOfWork.AspNetUser.Find(model.UserId);
                 user.FirstName = model.FirstName;
                 user.LastName = model.LastName;
                 user.PhoneNumber = model.PhoneNumber;
@@ -123,7 +123,7 @@ namespace FriendlyRS1.Controllers
                 user.About = model.About;
 
 
-                unitOfWork.User.Update(user);
+                unitOfWork.AspNetUser.Update(user);
                 unitOfWork.Complete();
             }
 
@@ -148,7 +148,7 @@ namespace FriendlyRS1.Controllers
         public IActionResult EditCity(int id)
         {
             string[] entities = { "City" };
-            ApplicationUser user = unitOfWork.User.Get(x => x.Id == id, entities);
+            ApplicationUser user = unitOfWork.AspNetUser.Get(x => x.Id == id, entities);
 
             CityVM model = new CityVM
             {
@@ -172,7 +172,7 @@ namespace FriendlyRS1.Controllers
         {
             if (!ModelState.IsValid) return RedirectToAction("EditCity", new { id = model.UserId });
 
-            ApplicationUser user = unitOfWork.User.Get(x => x.Id == model.UserId, null);
+            ApplicationUser user = unitOfWork.AspNetUser.Get(x => x.Id == model.UserId, null);
             City city;
 
             City result = unitOfWork.City.Get(c => c.Name == model.CityName || c.PostalCode == model.PostalCode, null);
@@ -252,7 +252,7 @@ namespace FriendlyRS1.Controllers
                    User2Id = x.User2Id
                });
 
-            UserDetailsVM user = unitOfWork.User.GetSingle(x => x.Id == id, x => new UserDetailsVM
+            UserDetailsVM user = unitOfWork.AspNetUser.GetSingle(x => x.Id == id, x => new UserDetailsVM
             {
                 UserId = x.Id,
                 FirstName = x.FirstName,
@@ -383,7 +383,7 @@ namespace FriendlyRS1.Controllers
             if (id == null) return View("Index");
 
             ApplicationUser user = await _userManger.GetUserAsync(User);
-            UserDetailsVM userDetails = unitOfWork.User.GetSingle(x => x.Id == id, x => new UserDetailsVM
+            UserDetailsVM userDetails = unitOfWork.AspNetUser.GetSingle(x => x.Id == id, x => new UserDetailsVM
             {
                 UserId = x.Id,
                 Email = x.Email,
@@ -403,7 +403,7 @@ namespace FriendlyRS1.Controllers
             if (id == null) return View("Index");
 
             ApplicationUser user = await _userManger.GetUserAsync(User);
-            UserDetailsVM userDetails = unitOfWork.User.GetSingle(x => x.Id == id, x => new UserDetailsVM
+            UserDetailsVM userDetails = unitOfWork.AspNetUser.GetSingle(x => x.Id == id, x => new UserDetailsVM
             {
                 UserId = x.Id,
                 CityName = x.City.Name,
@@ -426,7 +426,7 @@ namespace FriendlyRS1.Controllers
             if (id == null) return View("Index");
 
             ApplicationUser user = await _userManger.GetUserAsync(User);
-            UserDetailsVM userDetails = unitOfWork.User.GetSingle(x => x.Id == id, x => new UserDetailsVM
+            UserDetailsVM userDetails = unitOfWork.AspNetUser.GetSingle(x => x.Id == id, x => new UserDetailsVM
             {
                 UserId = x.Id,
                 FirstName = x.FirstName,

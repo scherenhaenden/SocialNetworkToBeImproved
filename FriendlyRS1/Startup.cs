@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using DataAccess.DataBase.Core.Configuration.EntityFramework;
+using DataAccess.DataBase.Core.UnitiesOfWork;
+using DataAccess.DataBase.Persistance.UnitiesOfWork;
+using DataAccess.TemporaryProviders;
 using DataLayer.EntityModels;
 using FriendlyRS1.Repository;
 using FriendlyRS1.Repository.RepostorySetup;
@@ -38,6 +42,15 @@ namespace FriendlyRS1
             services.AddDbContext<ApplicationDbContext>(options =>
            {
                 options.UseSqlServer(Configuration.GetConnectionString("PleskBaza"));
+                //options.UseSqlite("test.sqlite2");
+                //options.UseInMemoryDatabase("MyDb");
+           });
+            
+            services.AddDbContext<EFContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("PleskBaza"));
+                //options.UseSqlite("test.sqlite2");
+                //options.UseInMemoryDatabase("MyDb");
             });
 
 
@@ -77,9 +90,14 @@ namespace FriendlyRS1
 
             services.AddTransient<IEmailSender, SendGridEmailSender>();
             services.AddSingleton<IUserConnectionManager, UserConnectionManager>();
+            
             services.Configure<EmailSenderOptions>(Configuration);
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IUnitOfWorkV2, UnitOfWorkV2EntityFramework>();
+            
+            
+            services.AddScoped<IGenderDataProvider, GenderDataProvider>();
 
 
             services.AddMemoryCache();

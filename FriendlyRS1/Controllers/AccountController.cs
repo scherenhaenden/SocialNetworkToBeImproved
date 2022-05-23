@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using DataAccess.TemporaryProviders;
 using DataLayer.EntityModels;
 using FriendlyRS1.Helper.Messages;
 using FriendlyRS1.Repository.RepostorySetup;
@@ -24,19 +25,24 @@ namespace FriendlyRS1.Controllers
         public IEmailSender _emailSender { get; set; }
 
         private readonly IUnitOfWork unitOfWork;
+        private readonly IGenderDataProvider _genderDataProvider;
         private readonly string[] entites = new string[] { "Gender" };
 
         public AccountController(UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager, ILogger<AccountController> logger, IEmailSender emailSender,
-            IUnitOfWork unitOfWork)
+            IUnitOfWork unitOfWork,
+            IGenderDataProvider genderDataProvider)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            
             this.unitOfWork = unitOfWork;
+            _genderDataProvider = genderDataProvider;
         }
 
+        // what is even this???? 
         public async Task SendConfirmationToken(ApplicationUser user, string action, bool tokenType = false)
         {
 
@@ -106,7 +112,7 @@ namespace FriendlyRS1.Controllers
                 return "Lockout expires in less then minute";
         }
 
-        [Authorize(Roles = "Admin,User")]
+        [Authorize(Roles = "Admin,AspNetUser")]
         public async Task<IActionResult> LogOut()
         {
             if (!_signInManager.IsSignedIn(User))
@@ -117,12 +123,17 @@ namespace FriendlyRS1.Controllers
 
         public List<RegisterViewModel.Row> GetAllGenders()
         {
-            return unitOfWork.Gender.GetList(
-               x => new RegisterViewModel.Row
-               {
-                   Id = x.Id,
-                   GenderType = x.GenderType
-               });
+
+            var values = _genderDataProvider.GetAllGenders();
+
+            var result =values.Select(x => new RegisterViewModel.Row()
+            {
+                Id = x.Id,
+                GenderType = x.GenderType
+            }).ToList();
+            return result;
+            
+            
         }
 
         public IActionResult Register()
@@ -142,7 +153,7 @@ namespace FriendlyRS1.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
-            if (ModelState.IsValid)
+            if (ModelState !=null)
             {
                 var user = new ApplicationUser
                 {
@@ -154,13 +165,13 @@ namespace FriendlyRS1.Controllers
                     DateCreated = DateTime.Now,
                     DateModified = DateTime.Now,
                     ActiveAccount = true,
-                    GenderId = (int)model.GenderId,
+                    GenderId =  1,
                 };
 
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await _userManager.AddToRoleAsync(user, "User");
+                    await _userManager.AddToRoleAsync(user, "AspNetUser");
 
                     await SendConfirmationToken(user, "ConfirmEmail", true);
 

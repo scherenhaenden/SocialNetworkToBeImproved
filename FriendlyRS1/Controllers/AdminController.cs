@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.SignalR;
 
 namespace FriendlyRS1.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize]
     public class AdminController : Controller
     {
         private readonly IHubContext<NotificationHub> _notificationHubContext;
