@@ -5,10 +5,8 @@ using System.Text;
 
 namespace DataLayer.EntityModels
 {
-    public class NotificationType
+    public class NotificationType: Entity, IEntity
     {
-        [Key]
-        public int Id { get; set; }
         public string NotificationDescription { get; set; }
         public string NotificationMessage { get; set; }
     }

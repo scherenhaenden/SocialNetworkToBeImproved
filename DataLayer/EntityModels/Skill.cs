@@ -5,10 +5,8 @@ using System.Text;
 
 namespace DataLayer.EntityModels
 {
-    public class Skill
+    public class Skill: Entity, IEntity
     {
-        [Key]
-        public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public DateTime DateCreated { get; set; }

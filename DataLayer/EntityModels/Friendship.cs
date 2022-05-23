@@ -6,10 +6,8 @@ using System.Text;
 
 namespace DataLayer.EntityModels
 {
-    public class Friendship
+    public class Friendship: Entity, IEntity
     {
-        [Key]
-        public int Id { get; set; }
         public int User1Id { get; set; }
         [ForeignKey("User1Id")]
         public ApplicationUser User1 { get; set; }

@@ -6,10 +6,8 @@ using System.Text;
 
 namespace DataLayer.EntityModels
 {
-    public class BellNotification
+    public class BellNotification:Entity, IEntity
     {
-        [Key]
-        public int Id { get; set; }
         public int? ActorId { get; set; }
         public ApplicationUser Actor { get; set; }
         public int NotifierId { get; set; }

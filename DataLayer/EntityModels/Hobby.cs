@@ -6,10 +6,8 @@ using System.Text;
 
 namespace DataLayer.EntityModels
 {
-    public class Hobby
+    public class Hobby: Entity, IEntity
     {
-        [Key]
-        public int Id { get; set; }
         [Required]
         public string Title { get; set; }
         public string Description { get; set; }

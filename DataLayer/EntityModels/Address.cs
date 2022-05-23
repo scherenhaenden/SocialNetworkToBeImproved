@@ -6,10 +6,8 @@ using System.Text;
 
 namespace DataLayer.EntityModels
 {
-    public class Address
+    public class Address: Entity, IEntity
     {
-        [Required]
-        public int Id { get; set; }
         public string PostalCode { get; set; }
         public string Address1 { get; set; }
         public int CityId { get; set; }

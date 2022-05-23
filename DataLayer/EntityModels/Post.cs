@@ -6,10 +6,8 @@ using System.Text;
 
 namespace DataLayer.EntityModels
 {
-    public class Post
+    public class Post: Entity, IEntity
     {
-        [Key]
-        public int Id { get; set; }
         public int AuthorId { get; set; }
         [ForeignKey("AuthorId")]
         public ApplicationUser Author { get; set; }

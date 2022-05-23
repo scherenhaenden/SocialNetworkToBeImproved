@@ -5,10 +5,8 @@ using System.Text;
 
 namespace DataLayer.EntityModels
 {
-    public class HobbyCategory
+    public class HobbyCategory: Entity, IEntity
     {
-        [Key]
-        public int Id { get; set; }
         [Required]
         public string Name { get; set; }
         public DateTime? ModifiedDate { get; set; }

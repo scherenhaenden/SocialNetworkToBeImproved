@@ -6,7 +6,7 @@ using System.Text;
 
 namespace DataLayer.EntityModels
 {
-    public class ApplicationUserHobby
+    public class ApplicationUserHobby:Entity, IEntity
     {
         public DateTime Date { get; set; }
 
