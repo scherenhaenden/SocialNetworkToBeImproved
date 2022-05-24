@@ -66,7 +66,7 @@ public class Test1
     }*/
     
       
-    /*[Test]
+    [Test]
     public void Test1_Method3()
     {
 
@@ -88,7 +88,7 @@ public class Test1
         Assert.AreEqual(ghhgh.Count, 2);
 
 
-    }*/
+    }
     
     public void Test1_Method4()
     {
